@@ -1,12 +1,13 @@
 package harry.mod.util.handlers;
 
+import harry.mod.Main;
 import harry.mod.init.BiomeInit;
 import harry.mod.init.BlockInit;
 import harry.mod.init.EntityInit;
 import harry.mod.init.ItemInit;
 import harry.mod.util.interfaces.IHasModel;
 import harry.mod.world.gen.WorldGenCustomOres;
-import harry.mod.world.gen.WorldGenCustomTrees;
+import harry.mod.world.gen.WorldGenCustomStructures;
 import harry.mod.world.types.WorldTypeCopper;
 import harry.mod.world.types.WorldTypeCustom;
 import net.minecraft.block.Block;
@@ -16,6 +17,7 @@ import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
@@ -31,6 +33,7 @@ public class RegistryHandler
 	public static void onBlockRegister(RegistryEvent.Register<Block> event)
 	{
 		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
+		TileEntityHandler.registerTileEntities();
 	}
 	
 	@SubscribeEvent
@@ -56,7 +59,7 @@ public class RegistryHandler
 	public static void preInitRegistries()
 	{
 		GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
-		GameRegistry.registerWorldGenerator(new WorldGenCustomTrees(), 0);
+		GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
 		
 		BiomeInit.registerBiomes();
 		
@@ -67,6 +70,7 @@ public class RegistryHandler
 	public static void initRegistries()
 	{
 		SoundsHandler.registerSounds();
+		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
 	}
 	
 	public static void postInitRegistries()
