@@ -11,6 +11,7 @@ import harry.mod.objects.blocks.BlockOres;
 import harry.mod.objects.blocks.BlockPlank;
 import harry.mod.objects.blocks.BlockSantaHat;
 import harry.mod.objects.blocks.BlockSaplings;
+import harry.mod.objects.blocks.machines.electricalSinterer.BlockElectricalSinteringFurnace;
 import harry.mod.objects.blocks.machines.sinterer.BlockSinteringFurnace;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -34,5 +35,5 @@ public class BlockInit
 	public static final Block SANTA_HAT = new BlockSantaHat("santa_hat");
 	
 	public static final Block SINTERING_FURNACE = new BlockSinteringFurnace("sintering_furnace");
-
+	public static final Block E_SINTERING_FURNACE = new BlockElectricalSinteringFurnace("electrical_furnace"); 
 }

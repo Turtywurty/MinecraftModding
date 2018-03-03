@@ -19,4 +19,7 @@ public class ClientProxy extends CommonProxy
 	{
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(Reference.MODID, filename), id));
 	}
+
+	@Override
+	public void registerTileEntities() {}
 }
