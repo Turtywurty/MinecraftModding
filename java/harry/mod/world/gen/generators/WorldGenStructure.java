@@ -6,16 +6,21 @@ import harry.mod.util.Reference;
 import harry.mod.util.interfaces.IStructure;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class WorldGenStructure extends WorldGenerator implements IStructure
-{
-	public static String structureName;
+{	 
+	public static String structureName = "";
 	
 	public WorldGenStructure(String name) 
 	{
@@ -39,8 +44,8 @@ public class WorldGenStructure extends WorldGenerator implements IStructure
 		if(template != null)
 		{
 			IBlockState state = world.getBlockState(pos);
-			world.notifyBlockUpdate(pos, state, state, 3);
-			template.addBlocksToWorldChunk(world, pos, settings);
+			world.notifyBlockUpdate(pos, state, state, 3);	
+			template.addBlocksToWorldChunk(world, pos.add(0, 1, 0), settings);
 		}
 	}
 }
