@@ -9,6 +9,6 @@ public class TileEntityHandler
 	public static void registerTileEntities()
 	{
 		GameRegistry.registerTileEntity(TileEntitySinteringFurnace.class, "sintering_furnace");
-		GameRegistry.registerTileEntity(TileEntityElectricalSinteringFurnace.class, "e_sintering_furnace");
+		GameRegistry.registerTileEntity(TileEntityElectricalSinteringFurnace.class, "electrical_sintering_furnace");
 	}
 }
