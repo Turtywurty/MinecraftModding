@@ -6,7 +6,7 @@ import harry.mod.util.interfaces.IHasModel;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class ItemBase extends Item implements IHasModel
+public class ItemBase extends Item
 {
 	public ItemBase(String name) 
 	{
@@ -17,9 +17,4 @@ public class ItemBase extends Item implements IHasModel
 		ItemInit.ITEMS.add(this);
 	}
 
-	@Override
-	public void registerModels() 
-	{
-		Main.proxy.registerItemRenderer(this, 0, "inventory");
-	}
 }

@@ -44,6 +44,8 @@ public class RegistryHandler
 			if(item instanceof IHasModel)
 			{
 				((IHasModel)item).registerModels();
+			} else {
+				Main.proxy.Register(item);
 			}
 		}
 		
@@ -52,6 +54,8 @@ public class RegistryHandler
 			if(block instanceof IHasModel)
 			{
 				((IHasModel)block).registerModels();
+			} else {
+				Main.proxy.Register(block);
 			}
 		}
 	}
