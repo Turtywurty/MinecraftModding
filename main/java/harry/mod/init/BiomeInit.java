@@ -3,6 +3,7 @@ package harry.mod.init;
 import org.lwjgl.Sys;
 
 import harry.mod.world.biomes.BiomeCopper;
+import harry.mod.world.biomes.BiomeLibrary;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
@@ -14,10 +15,12 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 public class BiomeInit 
 {
 	public static final Biome COPPER = new BiomeCopper();
+	public static final Biome LIBRARY_DIMENSION = new BiomeLibrary();
 	
 	public static void registerBiomes()
 	{
 		initBiome(COPPER, "Copper", BiomeType.WARM, Type.HILLS, Type.MOUNTAIN, Type.DRY);
+		initBiome(LIBRARY_DIMENSION, "Library", BiomeType.WARM, Type.SPOOKY, Type.DENSE, Type.DRY);
 	}
 	
 	private static Biome initBiome(Biome biome, String name, BiomeType biomeType, Type... types)
