@@ -6,8 +6,6 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import harry.mod.init.BiomeInit;
-import harry.mod.util.handlers.EventsHandler;
-import harry.mod.world.gen.WorldGenCustomStructures;
 import harry.mod.world.gen.generators.WorldGenStructure;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;

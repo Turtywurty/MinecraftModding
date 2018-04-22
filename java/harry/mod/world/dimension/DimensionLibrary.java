@@ -19,7 +19,8 @@ public class DimensionLibrary extends WorldProvider
 	@Override
 	public DimensionType getDimensionType() 
 	{
-		return DimensionInit.COPPER;
+		return null;
+		//return DimensionInit.COPPER;
 	}
 	
 	@Override

@@ -37,7 +37,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 public class ChunkGeneratorEndTemplate implements IChunkGenerator
 {
 	//Block that replaces End Stone
-	protected static final IBlockState MAIN_BLOCK = BlockInit.COPPER_BLOCK.getDefaultState();
+	protected static final IBlockState MAIN_BLOCK = BlockInit.BLOCK_COPPER.getDefaultState();
     protected static final IBlockState AIR = Blocks.AIR.getDefaultState();
     
     //List of all the mobs you want to spawn

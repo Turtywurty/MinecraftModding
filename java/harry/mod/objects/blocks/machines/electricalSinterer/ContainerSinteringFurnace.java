@@ -7,8 +7,12 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerSinteringFurnace extends Container {
 	private final TileEntityElectricalSinteringFurnace tileentity;
@@ -16,10 +20,22 @@ public class ContainerSinteringFurnace extends Container {
 
 	public ContainerSinteringFurnace(InventoryPlayer player, TileEntityElectricalSinteringFurnace tileentity) {
 		this.tileentity = tileentity;
+		IItemHandler itemHandler = tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.DOWN);
+		
+		
+		
+		SlotItemHandler ouputSlot = new SlotItemHandler(itemHandler, 3, 81, 36) {
+			@Override
+			public boolean isItemValid(ItemStack stack)
+			{
+				return false;
+			}
+			
+		};
 
-		this.addSlotToContainer(new Slot(tileentity, 0, 26, 11));
-		this.addSlotToContainer(new Slot(tileentity, 1, 26, 59));
-		this.addSlotToContainer(new SlotSinteringFurnaceOutput(player.player, tileentity, 3, 81, 36));
+		this.addSlotToContainer(new SlotItemHandler(tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.WEST), 0, 26, 11));
+		this.addSlotToContainer(new SlotItemHandler(tileentity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.WEST), 1, 26, 59));
+		this.addSlotToContainer(ouputSlot);
 
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
