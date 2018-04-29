@@ -73,8 +73,10 @@ public class RegistryHandler
 	
 	public static void initRegistries()
 	{
+		System.out.println("INIT!");
 		SoundsHandler.registerSounds();
 		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
+		TileEntityHandler.registerTileEntities();
 	}
 	
 	public static void postInitRegistries()

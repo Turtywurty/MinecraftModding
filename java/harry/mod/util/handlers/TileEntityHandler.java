@@ -11,6 +11,7 @@ public class TileEntityHandler {
 		GameRegistry.registerTileEntity(TileEntitySinteringFurnace.class, "sintering_furnace");
 		GameRegistry.registerTileEntity(TileEntityElectricalSinteringFurnace.class, "electrical_sintering_furnace");
 		GameRegistry.registerTileEntity(TileGenerator.class, "generator");
+		System.out.println("registering TE for miner!!");
 		GameRegistry.registerTileEntity(TileEntityMiner.class, "miner");
 	}
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import harry.mod.objects.blocks.machines.miner.te.TileEntityMiner;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.*;
@@ -18,9 +19,20 @@ public class NBTHelper {
 	public static NBTTagCompound toNBT(Object o) {
 		if(o instanceof ItemStack)
 			return writeItemStack((ItemStack)o);
+		if(o instanceof TileEntityMiner){
+			return writeMiner((TileEntityMiner)o);
+		}
 		return null;
 	}
 	
+	private static NBTTagCompound writeMiner(TileEntityMiner o) {
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setInteger("y", o.y);
+		compound.setInteger("x", o.x);
+		compound.setInteger("z", o.z);
+		return compound;
+	}
+
 	private static NBTTagCompound writeItemStack(ItemStack i) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setInteger("count", i.getCount());
@@ -34,7 +46,6 @@ public class NBTHelper {
 		switch (compound.getByte("type")) {
 		case 0:
 			return readItemStack(compound);
-
 		default:
 			return null;
 		}

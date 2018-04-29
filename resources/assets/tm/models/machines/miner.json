@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "particle": "tm:blocks/miner/miner_top",
+        "down": "tm:blocks/miner/miner_bottom",
+        "west": "tm:blocks/miner/miner_side",
+        "east": "tm:blocks/miner/miner_side",
+        "north": "tm:blocks/miner/miner_side",
+        "south": "tm:blocks/miner/miner_side",
+        "up" : "tm:blocks/miner/miner_top"
+    }
+}

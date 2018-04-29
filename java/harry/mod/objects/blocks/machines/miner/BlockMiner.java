@@ -3,11 +3,14 @@
  */
 package harry.mod.objects.blocks.machines.miner;
 
+import harry.mod.Main;
 import harry.mod.objects.blocks.BlockBase;
 import harry.mod.objects.blocks.machines.miner.te.TileEntityMiner;
+import harry.mod.util.interfaces.IHasModel;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -15,7 +18,7 @@ import net.minecraft.world.World;
  * @author Ewan Arends
  *
  */
-public class BlockMiner extends BlockBase implements ITileEntityProvider{
+public class BlockMiner extends BlockBase implements ITileEntityProvider, IHasModel {
 
 	/**
 	 * @param name
@@ -40,6 +43,11 @@ public class BlockMiner extends BlockBase implements ITileEntityProvider{
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
 		return new TileEntityMiner();
+	}
+
+	@Override
+	public void registerModels() {
+		Main.proxy.registerVariantRenderer(Item.getItemFromBlock(this), 0, "miner", "inventory");
 	}
 
 }

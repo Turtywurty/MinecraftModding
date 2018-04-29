@@ -3,6 +3,7 @@ package harry.mod.util.helpers;
 import com.google.common.cache.Cache;
 
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 
 public class EnumHelper {
 
@@ -80,7 +81,14 @@ public class EnumHelper {
 			CACHE = rotateRight(offset);
 			break;
 		}
-		
+
 		return CACHE != null ? CACHE : offset;
+	}
+
+	public static EnumFacing getFacingFromOffset(BlockPos pos1, BlockPos pos2) {
+		return pos1.getY() == pos2.getY()
+				? (pos1.getZ() == pos2.getZ() ? (pos1.getX() < pos2.getZ() ? EnumFacing.WEST : EnumFacing.EAST)
+				: (pos1.getZ() < pos2.getZ() ? EnumFacing.NORTH : EnumFacing.SOUTH))
+				: (pos1.getY() < pos2.getY() ? EnumFacing.UP : EnumFacing.DOWN);
 	}
 }
