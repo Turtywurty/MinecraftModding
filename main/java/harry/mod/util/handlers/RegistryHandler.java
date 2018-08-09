@@ -1,47 +1,42 @@
-package harry.mod.util.handlers;
+package harry.mods.tutorialmod.handlers;
 
-import harry .mod.Main;
-import harry.mod.commands.CommandDimensionTeleport;
-import harry.mod.init.BiomeInit;
-import harry.mod.init.BlockInit;
-import harry.mod.init.DimensionInit;
-import harry.mod.init.EntityInit;
-import harry.mod.init.ItemInit;
-import harry.mod.util.interfaces.IHasModel;
-import harry.mod.world.gen.WorldGenCustomOres;
-import harry.mod.world.gen.WorldGenCustomStructures;
-import harry.mod.world.types.WorldTypeCopper;
-import harry.mod.world.types.WorldTypeCustom;
+import harry.mods.tutorialmod.Main;
+import harry.mods.tutorialmod.blocks.animation.RenderCopperChest;
+import harry.mods.tutorialmod.blocks.tileentity.TileEntityCopperChest;
+import harry.mods.tutorialmod.init.BlockInit;
+import harry.mods.tutorialmod.init.ItemInit;
+import harry.mods.tutorialmod.interfaces.IHasModel;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.world.WorldType;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @EventBusSubscriber
 public class RegistryHandler 
 {
 	@SubscribeEvent
-	public static void onItemRegister(RegistryEvent.Register<Item> event)
+	public static void registerItem(RegistryEvent.Register<Item> event)
 	{
 		event.getRegistry().registerAll(ItemInit.ITEMS.toArray(new Item[0]));
 	}
 	
 	@SubscribeEvent
-	public static void onBlockRegister(RegistryEvent.Register<Block> event)
+	public static void registerBlock(RegistryEvent.Register<Block> event)
 	{
 		event.getRegistry().registerAll(BlockInit.BLOCKS.toArray(new Block[0]));
 		TileEntityHandler.registerTileEntities();
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCopperChest.class, new RenderCopperChest());
 	}
 	
 	@SubscribeEvent
-	public static void onModelRegister(ModelRegistryEvent event)
-	{
+	public static void registerModels(ModelRegistryEvent event)
+	{		
+		Main.proxy.registerModel(Item.getItemFromBlock(BlockInit.COPPER_CHEST), 0);
+		
 		for(Item item : ItemInit.ITEMS)
 		{
 			if(item instanceof IHasModel)
@@ -61,30 +56,11 @@ public class RegistryHandler
 	
 	public static void preInitRegistries()
 	{
-		GameRegistry.registerWorldGenerator(new WorldGenCustomOres(), 0);
-		GameRegistry.registerWorldGenerator(new WorldGenCustomStructures(), 0);
 		
-		BiomeInit.registerBiomes();
-		DimensionInit.registerDimensions();
-		
-		EntityInit.registerEntities();
-		RenderHandler.registerEntityRenders();
 	}
 	
 	public static void initRegistries()
 	{
-		SoundsHandler.registerSounds();
 		NetworkRegistry.INSTANCE.registerGuiHandler(Main.instance, new GuiHandler());
-	}
-	
-	public static void postInitRegistries()
-	{
-		WorldType COPPER = new WorldTypeCopper();
-		WorldType CUSTOM = new WorldTypeCustom();
-	}
-	
-	public static void serverRegistries(FMLServerStartingEvent event)
-	{
-		event.registerServerCommand(new CommandDimensionTeleport());
 	}
 }
